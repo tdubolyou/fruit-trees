@@ -67,11 +67,32 @@ const DARK_FLAVOR = {
 	country_label: '#5c5c5c'
 };
 
+// Basemap layers we don't want: coloured park fills, POI icons/dots,
+// highway shields, one-way arrows, and the large place/address labels.
+// Road text labels and water labels are kept.
+const HIDDEN_LAYERS = new Set([
+	'landuse_park',
+	'landuse_urban_green',
+	'pois',
+	'roads_shields',
+	'roads_oneway',
+	'address_label',
+	'earth_label_islands',
+	'places_subplace',
+	'places_locality',
+	'places_region',
+	'places_country'
+]);
+
 /**
  * Builds a complete MapLibre style backed by the local pmtiles archive.
  * `tilesUrl` is the absolute URL to the .pmtiles file (resolved at runtime).
  */
 export function buildBasemapStyle(tilesUrl: string): StyleSpecification {
+	const basemapLayers = layers('protomaps', DARK_FLAVOR, { lang: 'en' }).filter(
+		(l) => !HIDDEN_LAYERS.has(l.id)
+	);
+
 	return {
 		version: 8,
 		glyphs: GLYPHS_URL,
@@ -84,7 +105,7 @@ export function buildBasemapStyle(tilesUrl: string): StyleSpecification {
 					'<a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org">OpenStreetMap</a>'
 			}
 		},
-		layers: layers('protomaps', DARK_FLAVOR, { lang: 'en' })
+		layers: basemapLayers
 	} as StyleSpecification;
 }
 
