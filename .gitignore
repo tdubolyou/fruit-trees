@@ -6,4 +6,5 @@ build
 !.env.example
 .DS_Store
 *.pmtiles
+!static/toronto.pmtiles
 .claude/settings.local.json

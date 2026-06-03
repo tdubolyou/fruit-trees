@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
+	import { base } from '$app/paths';
 	import { treeState } from '$lib/state/trees.svelte';
 	import { filterState } from '$lib/state/filters.svelte';
 	import { announce } from '$lib/a11y';
 	import {
-		BASEMAP_STYLE,
+		buildBasemapStyle,
+		PMTILES_FILE,
 		TREE_CIRCLE_PAINT,
 		TORONTO_CENTER,
 		TORONTO_BOUNDS
@@ -21,14 +22,22 @@
 
 	onMount(() => {
 		let mapInstance: maplibregl.Map | undefined;
+		let cleanupProtocol: (() => void) | undefined;
 
 		(async () => {
 			const ml = await import('maplibre-gl');
 			await import('maplibre-gl/dist/maplibre-gl.css');
+			const { Protocol } = await import('pmtiles');
+
+			// Register the pmtiles protocol so MapLibre can read the local archive.
+			const protocol = new Protocol();
+			ml.addProtocol('pmtiles', protocol.tile);
+			cleanupProtocol = () => ml.removeProtocol('pmtiles');
+			const tilesUrl = `${window.location.origin}${base}/${PMTILES_FILE}`;
 
 			mapInstance = new ml.Map({
 				container,
-				style: BASEMAP_STYLE,
+				style: buildBasemapStyle(tilesUrl),
 				center: TORONTO_CENTER,
 				zoom: 11,
 				bearing: -17, // Rotate map so top border of Toronto is flat
@@ -62,6 +71,7 @@
 
 		return () => {
 			mapInstance?.remove();
+			cleanupProtocol?.();
 		};
 	});
 
