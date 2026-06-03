@@ -1,0 +1,20 @@
+{
+  "commonName": "Pear",
+  "scientificName": "Pyrus spp. (P. communis, P. calleryana 'Chanticleer', P. calleryana 'Bradford')",
+  "category": "pear",
+  "description": "Pears are common in Toronto both as fruiting trees in residential yards and as ornamental Callery pear cultivars (Chanticleer, Bradford) planted extensively as street trees. European pears (Pyrus communis) produce the familiar large edible fruit, while Callery pears bear small, hard fruits that soften after frost. Pear trees are well-suited to Toronto's climate, being hardier than peaches and less prone to pest issues than apples. They are long-lived trees that can produce fruit for 50–75 years, with some heritage specimens in Toronto's older neighbourhoods being quite large.",
+  "identification": {
+    "leaves": "Pear leaves are broadly oval to rounded, 5–10 cm long, with finely scalloped margins and a glossy, leathery texture. They are dark green above, turning brilliant red, orange, or purple in autumn—especially striking on Callery pear cultivars.",
+    "bark": "Pear bark is greyish-brown with shallow furrows that develop into a distinctive pattern of small, square scales on mature trees. Young branches are smooth and olive-brown with prominent buds.",
+    "flowers": "Pear trees bloom prolifically in late April to early May with dense clusters of white, 5-petalled flowers that have an unpleasant musty odour. Callery pears are among the showiest spring-flowering street trees in Toronto despite their smell.",
+    "fruit": "European pear fruits are the classic pear shape, 6–12 cm long, green to yellow when ripe. Callery pear fruits are small (1–1.5 cm), round, hard, and brown-speckled, typically persisting on the tree into winter."
+  },
+  "ripening": "European pears in Toronto ripen from late August (early varieties like Bartlett) through October (Bosc, Anjou). Unlike most fruits, pears should be picked slightly underripe and allowed to ripen off the tree for best texture. Callery pear fruits soften after repeated freezing in November and December.",
+  "foraging": {
+    "bestTime": "Pick European pears when they separate easily from the branch with a gentle upward twist, typically September to October. Ripen them indoors at room temperature for 5–10 days until the neck yields to gentle pressure. Callery pear fruits can be gathered after hard frosts in late November.",
+    "storage": "Unripe European pears store well for 1–3 months in cold storage (0–2°C), ripening as needed at room temperature. They can be canned, dried, or fermented into perry (pear cider). Callery pear fruits are best used immediately after collection for jelly-making.",
+    "uses": "European pears are excellent fresh, poached, baked, or made into preserves and butter. Callery pear fruits, while astringent raw, can be cooked into a mildly flavoured jelly when combined with lemon juice for pectin. Pear wood is prized by woodworkers for its fine, even grain.",
+    "safety": "Pear fruits are entirely safe to eat, though Callery pear fruits are unpalatable raw due to extreme astringency and grittiness. Seeds contain trace amounts of cyanogenic compounds but pose no practical risk. Be cautious foraging street trees that may have been treated with pesticides."
+  },
+  "ecologicalValue": "Pear blossoms are important early-spring food sources for bees and other pollinators despite their unpleasant odour to humans. Callery pear fruits that persist into winter provide food for starlings, robins, and waxwings during scarce months. However, Callery pears are increasingly recognized as invasive in some regions, as bird-dispersed seeds can establish in natural areas."
+}

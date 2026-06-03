@@ -1,0 +1,20 @@
+{
+  "commonName": "Peach",
+  "scientificName": "Prunus persica",
+  "category": "peach",
+  "description": "Peach trees are somewhat marginal in Toronto's Zone 6a climate but can produce excellent fruit in sheltered microclimates, particularly in the city's warmer south-facing exposures near Lake Ontario. Originally from China, peaches require warm summers and are susceptible to late spring frosts that can damage their early blooms. Toronto's urban heat island effect and proximity to the moderating influence of Lake Ontario allow peaches to succeed where they might otherwise struggle. Trees are relatively short-lived (15–20 years) but begin bearing fruit within 3–4 years of planting.",
+  "identification": {
+    "leaves": "Peach leaves are long and lanceolate (12–20 cm), with finely serrated margins and a distinctive folded midrib. They are glossy dark green above and lighter beneath, with a slightly willow-like drooping habit.",
+    "bark": "Young peach bark is smooth and reddish-grey with prominent lenticels, becoming rough and scaly with age. Mature bark develops a dark grey colour with irregular fissures and may exude amber-coloured gum.",
+    "flowers": "Peach blossoms are among the earliest spring flowers, appearing in late April before the leaves emerge. Flowers are solitary or paired, 2–3 cm across, with five pink petals and numerous stamens.",
+    "fruit": "Peach fruits are large (5–8 cm) fuzzy drupes with yellow to orange flesh surrounding a deeply pitted stone. Varieties may be freestone (flesh separates easily from pit) or clingstone, with skin colour ranging from yellow-green to deep red."
+  },
+  "ripening": "In Toronto, peaches typically ripen from late July through September depending on the cultivar. Early varieties like Harrow Diamond mature in late July, while mid-season types such as Redhaven ripen in August. Late cultivars may extend into September but risk not maturing fully in cooler years.",
+  "foraging": {
+    "bestTime": "Harvest peaches when they yield slightly to gentle pressure and have fully developed their colour, typically August in Toronto. The fruit should separate easily from the branch with a gentle twist; if it requires pulling, it needs more time.",
+    "storage": "Ripe peaches are very perishable, lasting only 3–5 days at room temperature or up to a week refrigerated. They preserve well by canning, freezing (sliced with a splash of lemon juice), or drying into leather.",
+    "uses": "Peaches are superb eaten fresh at peak ripeness, and excellent in pies, cobblers, jams, and chutneys. They ferment well into peach wine or brandy, and can be grilled or used in savoury salsas and salads.",
+    "safety": "Peach pits contain amygdalin (a cyanogenic glycoside) and should never be cracked open and eaten. The fuzzy skin may cause mild irritation for some people and can be removed by briefly blanching in boiling water."
+  },
+  "ecologicalValue": "Peach blossoms provide early-spring nectar for bees and other pollinators when few other food sources are available in Toronto. While less ecologically significant than native fruit trees, their fallen fruit feeds urban wildlife including raccoons and squirrels. Peach trees planted in community gardens and residential lots contribute to urban food security and biodiversity corridors."
+}

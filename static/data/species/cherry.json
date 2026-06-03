@@ -1,0 +1,20 @@
+{
+  "commonName": "Cherry",
+  "scientificName": "Prunus spp. (P. avium, P. serotina, P. virginiana, P. serrulata)",
+  "category": "cherry",
+  "description": "Cherries are widely represented in Toronto's urban canopy, from ornamental Japanese flowering cherries to native chokecherries and wild black cherries. Sweet cherries (Prunus avium) and sour cherries (P. cerasus) produce edible fruit in residential areas, while the native chokecherry (P. virginiana) and black cherry (P. serotina) are common in ravines and naturalized areas. Japanese flowering cherries are primarily ornamental but produce small, bitter fruit. Toronto's climate supports all these species well, with reliable fruit production in most years.",
+  "identification": {
+    "leaves": "Cherry leaves are oval to lanceolate with serrated margins, 5–15 cm long, with a glossy dark green upper surface. Most species have small glands on the leaf stalk near the blade, and leaves turn yellow to red in autumn.",
+    "bark": "Cherry bark is distinctive with prominent horizontal lenticels (breathing pores) giving a banded appearance. Young bark is smooth and reddish-brown, becoming darker and developing scaly plates on mature black cherry trees.",
+    "flowers": "Cherry blossoms appear in April to May before or with the leaves, in clusters of white to pink 5-petalled flowers. Japanese cherries often have double flowers with many petals, while native species have simpler blooms in elongated racemes.",
+    "fruit": "Sweet and sour cherry fruits are 1–2.5 cm drupes, red to nearly black when ripe, with a single stone. Chokecherries produce dense clusters of small (8–10 mm) dark purple-black fruits that are extremely astringent when raw."
+  },
+  "ripening": "Sweet and sour cherries ripen in Toronto from late June through mid-July, with sour varieties typically ready a week or two earlier. Chokecherries and black cherries ripen later, from August into September. Japanese ornamental cherries produce small fruit in July but these are generally not worth foraging.",
+  "foraging": {
+    "bestTime": "Harvest sweet and sour cherries in late June to mid-July when fully coloured and slightly soft. Chokecherries should be picked in late August to September when completely dark purple-black; underripe fruit is extremely astringent.",
+    "storage": "Fresh cherries are highly perishable and should be refrigerated immediately, lasting about one week. They freeze exceptionally well pitted, or can be dried, preserved in syrup, or fermented into cherry wine or liqueur.",
+    "uses": "Sweet cherries are excellent fresh or in desserts, while sour cherries excel in pies, jams, and preserves. Chokecherries are best cooked into jelly, syrup, or wine—their astringency disappears with cooking and sugar. Black cherry bark has been traditionally used for cough remedies.",
+    "safety": "Cherry pits, leaves, and bark contain cyanogenic glycosides that release hydrogen cyanide when damaged—never crush or consume the stones. Chokecherries must be cooked and strained to remove pits before consumption; the cooked flesh is safe."
+  },
+  "ecologicalValue": "Cherry trees are vital early-season nectar sources for native bees and migrating butterflies in Toronto's spring landscape. Their fruit is heavily consumed by birds including robins, cedar waxwings, and thrushes, aiding seed dispersal throughout the city. Native black cherry is a host plant for Eastern tiger swallowtail and other moth species, supporting the urban food web."
+}

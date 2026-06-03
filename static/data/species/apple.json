@@ -1,0 +1,20 @@
+{
+  "commonName": "Apple",
+  "scientificName": "Malus domestica and related species (M. sargentii, M. sylvestris, M. baccata)",
+  "category": "apple",
+  "description": "Apples are among the most widely planted fruit trees in Toronto, thriving in the city's Zone 6a climate with cold winters that satisfy their chill-hour requirements. The genus includes domesticated cultivars (Malus domestica), ornamental Sargent crabapples, wild crabapples, and the cold-hardy Siberian crabapple. Many heritage apple trees in Toronto's older neighbourhoods produce abundant fruit each autumn, while crabapples provide smaller, tart fruit ideal for preserves. Urban apple trees often go unharvested, making them excellent foraging targets from late August through October.",
+  "identification": {
+    "leaves": "Apple leaves are oval to elliptical with finely serrated margins, 5–12 cm long, dark green above and slightly fuzzy beneath. Crabapple leaves tend to be smaller and may have lobed margins in some species.",
+    "bark": "Young apple trees have smooth, grey-brown bark that becomes scaly and fissured with age, developing irregular plates. Older trees often show characteristic horizontal lenticels on younger branches.",
+    "flowers": "Apple blossoms appear in May as clusters of 5-petalled flowers, white to pink, with a sweet fragrance that attracts pollinators. Crabapples tend to bloom slightly later with more intensely pink or red flowers.",
+    "fruit": "Domestic apple fruits range from 5–10 cm in diameter with colours from green to red, ripening August through October. Crabapples produce smaller fruits (1–4 cm) that persist on the tree into winter, often yellow, red, or purple."
+  },
+  "ripening": "In Toronto, early varieties like Transparent and Gravenstein ripen in mid-August, while mid-season cultivars like McIntosh and Cortland are ready in September. Late varieties including Northern Spy and Granny Smith mature in October. Crabapples typically ripen from September through November, with some improving after a light frost.",
+  "foraging": {
+    "bestTime": "Harvest domestic apples from late August through October depending on variety. Crabapples are best collected after the first frost in late October or November, which reduces their astringency and concentrates sugars.",
+    "storage": "Fresh apples store well in cool, dark conditions (1–4°C) for several months. Crabapples should be processed promptly into jelly, sauce, or cider within a week of picking as they soften quickly.",
+    "uses": "Domestic apples are excellent fresh, baked, dried, or pressed into cider. Crabapples are prized for jelly and preserves due to their high pectin content, and can be blended into cider for added complexity and tannin.",
+    "safety": "Apple seeds contain amygdalin which releases cyanide when crushed, but the quantities are negligible unless consumed in very large amounts. Avoid foraging from trees near busy roads or those visibly sprayed with pesticides."
+  },
+  "ecologicalValue": "Apple trees provide critical spring nectar and pollen for native bees, honeybees, and other pollinators during their May bloom period. Their fruit supports birds, squirrels, and other urban wildlife through fall and winter. Crabapples that persist on the tree are especially valuable as winter food for cedar waxwings, robins, and other fruit-eating birds in Toronto's urban forest."
+}

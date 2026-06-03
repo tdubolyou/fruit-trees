@@ -1,0 +1,21 @@
+{
+  "commonName": "Berry Trees (Mulberry & Hackberry)",
+  "scientificName": "Morus spp. (M. alba, M. rubra), Celtis occidentalis",
+  "category": "berry",
+  "description": "Toronto's berry-producing trees include white mulberry (Morus alba), the native red mulberry (Morus rubra), weeping mulberry cultivars, and the common hackberry (Celtis occidentalis). White mulberry is abundant throughout the city as a naturalized species originally introduced for silk production, while the native red mulberry is rare and provincially endangered. Hackberry is a tough native shade tree increasingly planted as a street tree, producing small sweet drupes favoured by birds. These species are all well-suited to Toronto's climate and commonly found in parks, ravines, and residential areas.",
+  "identification": {
+    "leaves": "Mulberry leaves are highly variable—often lobed on young growth and unlobed on mature branches—broadly ovate, 7–20 cm long, with serrated margins and a rough upper surface. Hackberry leaves are distinctively asymmetrical at the base, 5–12 cm long, with a sandpapery texture above and prominent veining beneath.",
+    "bark": "Mulberry bark is orange-brown with irregular furrows and ridges, becoming more deeply fissured with age. Hackberry bark is uniquely identifiable by its corky, warty ridges and projections on otherwise smooth grey bark—unlike any other Toronto tree.",
+    "flowers": "Mulberry flowers are inconspicuous greenish catkins appearing in May, with male and female flowers sometimes on separate trees. Hackberry flowers are tiny and greenish, appearing with the leaves in spring, and are wind-pollinated rather than insect-pollinated.",
+    "fruit": "Mulberry fruits are elongated aggregate berries (2–3 cm), resembling blackberries, ripening from white through red to dark purple-black. Hackberry fruits are small (8–10 mm) round drupes with thin sweet flesh over a large crunchy seed, ripening to dark purple in autumn."
+  },
+  "ripening": "White mulberries ripen in Toronto from mid-June through July in an extended harvest period, with fruits maturing unevenly on the same tree. Red mulberries ripen slightly later in July. Hackberry fruits mature in September to October and persist on the tree well into winter, sweetening with age.",
+  "foraging": {
+    "bestTime": "Harvest mulberries from mid-June through July when individual fruits turn fully dark (purple-black for red mulberry, varies for white). The easiest method is to spread a sheet beneath the tree and shake branches, collecting ripe berries that fall. Hackberry fruits can be gathered from October onward.",
+    "storage": "Fresh mulberries are extremely perishable, staining everything they touch, and should be used within 1–2 days of picking. They freeze well spread on trays, and dry into sweet raisin-like morsels. Hackberry fruits dry naturally on the tree and keep indefinitely.",
+    "uses": "Mulberries are excellent in pies, jams, syrups, and wine, or eaten fresh despite their mild sweetness. They make outstanding ice cream and sorbet. Hackberry fruits can be eaten whole (the crunchy seed is edible and nutritious), ground into a paste, or used as a trail snack—they taste like dates with a nutty crunch.",
+    "safety": "Ripe mulberries are entirely safe to eat, but unripe white mulberries and raw leaves can cause mild stomach upset. Mulberry sap (white latex) may irritate skin. Hackberry fruits are completely safe and have been eaten by Indigenous peoples for thousands of years.",
+    "caution": "Red mulberry (Morus rubra) is endangered in Ontario—learn to distinguish it from the abundant white mulberry and do not harvest from confirmed native specimens."
+  },
+  "ecologicalValue": "Mulberry trees are among the most wildlife-valuable urban trees, with their fruit consumed by over 60 bird species including orioles, tanagers, catbirds, and waxwings. Hackberry is the sole larval host for the hackberry emperor and tawny emperor butterflies, both present in Toronto. Red mulberry is a Species at Risk in Ontario, making its conservation in urban forests particularly important for regional biodiversity."
+}

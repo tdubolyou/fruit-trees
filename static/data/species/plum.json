@@ -1,0 +1,20 @@
+{
+  "commonName": "Plum",
+  "scientificName": "Prunus domestica, Prunus nigra (Canada Plum)",
+  "category": "plum",
+  "description": "Plums in Toronto include both European cultivated varieties (Prunus domestica) and the native Canada plum (Prunus nigra), which grows wild in ravines and woodland edges. European plums are commonly found in older residential gardens and produce familiar purple, blue, or yellow freestone fruits. The Canada plum is a small native tree that produces tart, flavourful fruit prized for preserves and is well-adapted to Toronto's cold winters. Both types are reliable producers in Zone 6a and require less maintenance than many other fruit trees.",
+  "identification": {
+    "leaves": "Plum leaves are oval to obovate, 5–10 cm long, with serrated margins and a slightly wrinkled texture above. Canada plum leaves tend to be broader and more coarsely toothed than European varieties.",
+    "bark": "Plum bark is dark grey to reddish-brown with horizontal lenticels on young wood, developing shallow furrows and flaking plates with age. The bark may exude amber gum, particularly at wound sites.",
+    "flowers": "Plum blossoms appear in late April to early May, with white to pale pink flowers in clusters of 2–5 along the branches. Canada plum flowers are slightly larger and appear before the leaves fully emerge, creating a striking white display.",
+    "fruit": "European plum fruits are oval drupes, 3–7 cm long, with a waxy bloom on purple, blue, yellow, or green skin. Canada plum fruits are smaller (2–3 cm), oblong, ripening from yellow to red, with tart flesh clinging to the stone."
+  },
+  "ripening": "European plums ripen in Toronto from late August through September, depending on variety. Early types like Methley mature in August, while Italian prune plums and Damson are ready in September. Canada plums ripen in August to early September and drop quickly once ripe.",
+  "foraging": {
+    "bestTime": "Harvest European plums when they develop full colour and yield slightly to pressure, detaching easily from the spur. Canada plums should be gathered just as they begin to soften and turn red-orange in August; once fully ripe they fall and bruise quickly.",
+    "storage": "Ripe plums keep about one week refrigerated but can be frozen halved and pitted, or dried into prunes. Plums are excellent candidates for jam, preserves, and fruit leather due to their high natural pectin content.",
+    "uses": "European plums are delicious fresh, baked into cakes and tarts, fermented into plum wine or slivovitz, or dried as prunes. Canada plums are too tart for fresh eating but make exceptional jelly, jam, and fruit butter with a complex, wild flavour. Damson plums are traditionally used for gin infusions.",
+    "safety": "Plum pits contain cyanogenic glycosides and should not be consumed or cracked open. The fruit flesh is entirely safe. Wild Canada plums growing near roads or in contaminated soil should be avoided."
+  },
+  "ecologicalValue": "Plum blossoms are among the earliest food sources for native mining bees and other spring pollinators in the Toronto region. Canada plum forms thickets that provide nesting habitat for songbirds and its fruit feeds wildlife from foxes to wild turkeys. The dense branching structure offers important shelter for birds in urban and suburban landscapes throughout the year."
+}

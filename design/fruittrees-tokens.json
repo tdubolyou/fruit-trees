@@ -1,0 +1,460 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "Design tokens for The Fruit Trees of Toronto — interactive map. Dark UI, editorial register, restrained motion. Token names follow {category}/{group}/{variant} convention. Opacity-derived values are noted in the $description field; consumers should compose them at render time rather than baking in hex with alpha.",
+  "$metadata": {
+    "project": "fruittrees",
+    "version": "1.0.0",
+    "reference-viewport": "1440x900",
+    "stack-target": "svelte"
+  },
+
+  "color": {
+    "bg": {
+      "canvas": {
+        "$value": "#0A0B0D",
+        "$type": "color",
+        "$description": "Deepest fallback behind everything. Rarely visible — only when map fails to load."
+      },
+      "panel": {
+        "$value": "#111316",
+        "$type": "color",
+        "$description": "Sidebar card fill. Applied at 78% opacity over map with 12px backdrop-filter blur."
+      },
+      "panel-raised": {
+        "$value": "#1A1D21",
+        "$type": "color",
+        "$description": "Hover/active state for cards. Currently unused since cards are not interactive."
+      },
+      "scrim": {
+        "$value": "#000000",
+        "$type": "color",
+        "$description": "Modal backdrop. Applied at 40% opacity."
+      }
+    },
+
+    "border": {
+      "hairline": {
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$type": "color",
+        "$description": "Card edges. Subtle separation from map without visual weight."
+      },
+      "subtle": {
+        "$value": "rgba(255, 255, 255, 0.14)",
+        "$type": "color",
+        "$description": "Toggle pill resting state border."
+      },
+      "strong": {
+        "$value": "rgba(255, 255, 255, 0.24)",
+        "$type": "color",
+        "$description": "Toggle pill hover state border."
+      }
+    },
+
+    "ink": {
+      "primary": {
+        "$value": "#F5F4F1",
+        "$type": "color",
+        "$description": "Titles, active labels. Warm off-white — pure white reads cheap on dark."
+      },
+      "secondary": {
+        "$value": "#B8B6B0",
+        "$type": "color",
+        "$description": "Descriptor lines, italic helper text."
+      },
+      "tertiary": {
+        "$value": "#6E6C68",
+        "$type": "color",
+        "$description": "Axis ticks, attribution, disabled states, counts."
+      },
+      "inverse": {
+        "$value": "#0A0B0D",
+        "$type": "color",
+        "$description": "On light fills. Rare — only if a fruit color background appears."
+      }
+    },
+
+    "fruit": {
+      "$description": "Two complete palettes shipped. Choose ONE at implementation time and discard the other. 'systematized' preserves current map identity with normalized brightness. 'botanical' is the more disciplined editorial choice. Test both at full map density before committing.",
+
+      "systematized": {
+        "apple": { "$value": "#E63946", "$type": "color" },
+        "apricot": { "$value": "#E8DCC4", "$type": "color" },
+        "peach": { "$value": "#F2994A", "$type": "color" },
+        "plum": { "$value": "#9B8AC4", "$type": "color" },
+        "cherry": { "$value": "#F4A6B8", "$type": "color" },
+        "pear": { "$value": "#A8D04A", "$type": "color" },
+        "berries": { "$value": "#4A90D9", "$type": "color" },
+        "nuts": { "$value": "#8B5A3C", "$type": "color" }
+      },
+
+      "botanical": {
+        "apple": { "$value": "#C8334A", "$type": "color" },
+        "apricot": { "$value": "#E5B97A", "$type": "color" },
+        "peach": { "$value": "#E89060", "$type": "color" },
+        "plum": { "$value": "#7B5E9E", "$type": "color" },
+        "cherry": { "$value": "#D87090", "$type": "color" },
+        "pear": { "$value": "#B8C448", "$type": "color" },
+        "berries": { "$value": "#3E6FA8", "$type": "color" },
+        "nuts": { "$value": "#735039", "$type": "color" }
+      },
+
+      "derived": {
+        "$description": "For each fruit color, compose at render time rather than storing as separate hex. Pattern: {base} for dots and active swatches, {base}@12% for active pill background, {base}@50% for active pill border, {base}@40% for toggled-off state.",
+        "tint-opacity": { "$value": 0.12, "$type": "number" },
+        "border-opacity": { "$value": 0.50, "$type": "number" },
+        "dim-opacity": { "$value": 0.40, "$type": "number" }
+      }
+    },
+
+    "season": {
+      "winter": {
+        "$value": "#2E4257",
+        "$type": "color",
+        "$description": "Cool blue-grey. Applied at ~15% opacity behind slider track at Dec/Jan positions."
+      },
+      "summer": {
+        "$value": "#8A6B3D",
+        "$type": "color",
+        "$description": "Warm amber. Applied at ~15% opacity behind slider track at Jun/Jul positions."
+      },
+      "daylight": {
+        "$value": "#F5F4F1",
+        "$type": "color",
+        "$description": "Daylight curve stroke. Applied at 30% opacity."
+      }
+    }
+  },
+
+  "font": {
+    "family": {
+      "display": {
+        "$value": "\"Fraunces\", \"Times New Roman\", serif",
+        "$type": "fontFamily",
+        "$description": "Editorial serif. Use opsz axis at large sizes (96+ for display/lg, 144 for display/xl)."
+      },
+      "ui": {
+        "$value": "\"Inter\", \"Helvetica Neue\", system-ui, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Variable Inter. Enable tnum on numeric content (counts, ticks)."
+      },
+      "mono": {
+        "$value": "\"JetBrains Mono\", \"SF Mono\", ui-monospace, monospace",
+        "$type": "fontFamily",
+        "$description": "Tabular figures for counts, slider tick values, coordinates."
+      }
+    },
+
+    "size": {
+      "2xs": { "$value": "10px", "$type": "dimension", "$description": "Attribution, copyright lines." },
+      "xs":  { "$value": "11px", "$type": "dimension", "$description": "Legend descriptors, slider tick labels." },
+      "sm":  { "$value": "13px", "$type": "dimension", "$description": "Toggle labels, section headings, buttons." },
+      "base":{ "$value": "15px", "$type": "dimension", "$description": "Body text, tooltip content." },
+      "lg":  { "$value": "18px", "$type": "dimension", "$description": "Subtitle." },
+      "xl":  { "$value": "22px", "$type": "dimension", "$description": "Card headings (reserved, currently unused)." },
+      "2xl": { "$value": "32px", "$type": "dimension", "$description": "Primary title, desktop." },
+      "3xl": { "$value": "44px", "$type": "dimension", "$description": "Primary title, large desktop (optional)." }
+    },
+
+    "weight": {
+      "regular":  { "$value": 400, "$type": "fontWeight" },
+      "medium":   { "$value": 500, "$type": "fontWeight" },
+      "semibold": { "$value": 600, "$type": "fontWeight", "$description": "Ceiling. Avoid 700+ entirely — heavy weights on dark at small size destroy polish." }
+    },
+
+    "leading": {
+      "tight":  { "$value": 1.1, "$type": "number", "$description": "Display title." },
+      "snug":   { "$value": 1.3, "$type": "number", "$description": "Subtitles, headings." },
+      "normal": { "$value": 1.5, "$type": "number", "$description": "Body text, tooltip." },
+      "loose":  { "$value": 1.7, "$type": "number", "$description": "Long-form modal text." }
+    },
+
+    "tracking": {
+      "tight":  { "$value": "-0.02em", "$type": "dimension", "$description": "Fraunces 32px+." },
+      "snug":   { "$value": "-0.01em", "$type": "dimension", "$description": "Fraunces 18–22px." },
+      "normal": { "$value": "0",       "$type": "dimension", "$description": "Inter body." },
+      "wide":   { "$value": "0.04em",  "$type": "dimension", "$description": "Inter small labels, uppercase." },
+      "wider":  { "$value": "0.08em",  "$type": "dimension", "$description": "Tiny all-caps tags, 10–11px only." }
+    },
+
+    "style": {
+      "$description": "Composed text styles. Apply as a single unit — do not mix-and-match individual properties without understanding the relationship between family, size, weight, leading, and tracking.",
+
+      "display-xl": {
+        "family":        "{font.family.display}",
+        "size":          "{font.size.3xl}",
+        "weight":        "{font.weight.medium}",
+        "leading":       "{font.leading.tight}",
+        "tracking":      "{font.tracking.tight}",
+        "optical-size":  144,
+        "$description":  "Largest title size, optional. Use only at 1920+ viewports."
+      },
+
+      "display-lg": {
+        "family":        "{font.family.display}",
+        "size":          "{font.size.2xl}",
+        "weight":        "{font.weight.medium}",
+        "leading":       "{font.leading.tight}",
+        "tracking":      "{font.tracking.tight}",
+        "optical-size":  96,
+        "$description":  "Primary title. 'The Fruit Trees of Toronto'."
+      },
+
+      "subtitle": {
+        "family":        "{font.family.display}",
+        "size":          "{font.size.lg}",
+        "weight":        "{font.weight.regular}",
+        "leading":       "{font.leading.snug}",
+        "tracking":      "{font.tracking.snug}",
+        "optical-size":  24,
+        "style":         "italic",
+        "$description":  "'By Type, Size and Ripening Month'. Italic is the move that does the most work for editorial register."
+      },
+
+      "heading-sm": {
+        "family":        "{font.family.ui}",
+        "size":          "{font.size.sm}",
+        "weight":        "{font.weight.semibold}",
+        "leading":       "{font.leading.snug}",
+        "tracking":      "{font.tracking.wide}",
+        "transform":     "uppercase",
+        "$description":  "Section headers — 'Layers', 'Ripening season'."
+      },
+
+      "label-lg": {
+        "family":        "{font.family.ui}",
+        "size":          "{font.size.sm}",
+        "weight":        "{font.weight.medium}",
+        "leading":       1.2,
+        "tracking":      "{font.tracking.normal}",
+        "$description":  "Toggle button labels — 'Apple', 'Pear'."
+      },
+
+      "label-sm": {
+        "family":        "{font.family.ui}",
+        "size":          "{font.size.xs}",
+        "weight":        "{font.weight.medium}",
+        "leading":       1.2,
+        "tracking":      "{font.tracking.wide}",
+        "$description":  "Slider month labels — 'Jan', 'Feb'."
+      },
+
+      "body": {
+        "family":        "{font.family.ui}",
+        "size":          "{font.size.base}",
+        "weight":        "{font.weight.regular}",
+        "leading":       "{font.leading.normal}",
+        "tracking":      "{font.tracking.normal}",
+        "$description":  "Tooltip content, modal body."
+      },
+
+      "descriptor": {
+        "family":        "{font.family.ui}",
+        "size":          "{font.size.xs}",
+        "weight":        "{font.weight.regular}",
+        "leading":       1.4,
+        "tracking":      "{font.tracking.normal}",
+        "style":         "italic",
+        "color":         "{color.ink.secondary}",
+        "$description":  "'Cherry, Choke, Purpleleaf, Sargent' species lists, slider helper text. Italics distinguish from primary content."
+      },
+
+      "count": {
+        "family":        "{font.family.mono}",
+        "size":          "{font.size.xs}",
+        "weight":        "{font.weight.regular}",
+        "leading":       1,
+        "tracking":      "{font.tracking.normal}",
+        "features":      "tnum",
+        "color":         "{color.ink.tertiary}",
+        "$description":  "'8,432' next to toggle labels. Tabular figures, mono — signals 'this is data'."
+      },
+
+      "caption": {
+        "family":        "{font.family.ui}",
+        "size":          "{font.size.2xs}",
+        "weight":        "{font.weight.regular}",
+        "leading":       1.4,
+        "tracking":      "{font.tracking.wide}",
+        "color":         "{color.ink.tertiary}",
+        "$description":  "Attribution, source link, '© mapTO'."
+      }
+    }
+  },
+
+  "space": {
+    "$description": "4px base unit. Half-steps (2px, 6px, 10px) allowed only where listed below — outside that, snap to the scale.",
+    "0":   { "$value": "0px",  "$type": "dimension" },
+    "px":  { "$value": "1px",  "$type": "dimension" },
+    "0-5": { "$value": "2px",  "$type": "dimension" },
+    "1":   { "$value": "4px",  "$type": "dimension" },
+    "1-5": { "$value": "6px",  "$type": "dimension", "$description": "Toggle pill gap, used inside Card 2." },
+    "2":   { "$value": "8px",  "$type": "dimension" },
+    "2-5": { "$value": "10px", "$type": "dimension", "$description": "Toggle pill left padding (asymmetric with right for dot weight)." },
+    "3":   { "$value": "12px", "$type": "dimension", "$description": "Gap between sidebar cards." },
+    "4":   { "$value": "16px", "$type": "dimension" },
+    "5":   { "$value": "20px", "$type": "dimension", "$description": "Card padding (Cards 2 and 3)." },
+    "6":   { "$value": "24px", "$type": "dimension", "$description": "Sidebar offset from viewport edges. Card 1 top padding." },
+    "8":   { "$value": "32px", "$type": "dimension" },
+    "10":  { "$value": "40px", "$type": "dimension" },
+    "12":  { "$value": "48px", "$type": "dimension", "$description": "Total horizontal viewport offset (24 + 24)." }
+  },
+
+  "radius": {
+    "none": { "$value": "0px", "$type": "dimension" },
+    "sm":   { "$value": "4px", "$type": "dimension", "$description": "Toggle pills, reset button, small interactive elements." },
+    "md":   { "$value": "6px", "$type": "dimension", "$description": "Cards, modals. Yes 6 — not 12. Large radii on map UI reads consumer-app." },
+    "lg":   { "$value": "8px", "$type": "dimension", "$description": "Maximum. Only on the largest containers." },
+    "full": { "$value": "9999px", "$type": "dimension", "$description": "Dots on the map, dot swatches in toggles." }
+  },
+
+  "shadow": {
+    "card": {
+      "$value": "0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.2)",
+      "$type": "shadow",
+      "$description": "Subtle lift for sidebar cards. Two-layer: tight contact shadow + ambient diffuse."
+    },
+    "modal": {
+      "$value": "0 4px 8px rgba(0, 0, 0, 0.5), 0 24px 64px rgba(0, 0, 0, 0.4)",
+      "$type": "shadow",
+      "$description": "Modals only. Currently reserved for methodology modal."
+    }
+  },
+
+  "blur": {
+    "panel": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "backdrop-filter blur on sidebar cards. Combined with 78% opacity panel fill."
+    }
+  },
+
+  "opacity": {
+    "panel-fill": { "$value": 0.78, "$type": "number", "$description": "color/bg/panel applied at this opacity over the map." },
+    "scrim":      { "$value": 0.40, "$type": "number" },
+    "season-tint":{ "$value": 0.15, "$type": "number", "$description": "Winter/summer color band behind slider track." },
+    "daylight-curve": { "$value": 0.30, "$type": "number", "$description": "Daylight curve stroke opacity." }
+  },
+
+  "motion": {
+    "$description": "Restrained, fast, ease-out by default. Resist any temptation toward bouncy or elastic curves — this is an editorial map, not a marketing site.",
+
+    "duration": {
+      "instant": { "$value": "100ms", "$type": "duration", "$description": "Thumb scale on hover, smallest hovers." },
+      "fast":    { "$value": "150ms", "$type": "duration", "$description": "Toggle border brighten, label opacity changes." },
+      "base":    { "$value": "200ms", "$type": "duration", "$description": "Layer fade in/out on toggle." },
+      "slow":    { "$value": "300ms", "$type": "duration", "$description": "Reset button slide in/out, modal fade." }
+    },
+
+    "easing": {
+      "linear":   { "$value": "linear", "$type": "cubicBezier" },
+      "ease-out": { "$value": "cubic-bezier(0.16, 1, 0.3, 1)", "$type": "cubicBezier", "$description": "Default — exits feel snappy, lands soft." },
+      "ease-in-out": { "$value": "cubic-bezier(0.4, 0, 0.2, 1)", "$type": "cubicBezier", "$description": "For sustained transitions like modal fades." }
+    }
+  },
+
+  "layout": {
+    "$description": "Reference dimensions for the desktop layout (1440px viewport). Values are absolute — token consumers should layer responsive overrides on top of this.",
+
+    "viewport": {
+      "reference-width":  { "$value": "1440px", "$type": "dimension" },
+      "reference-height": { "$value": "900px",  "$type": "dimension" },
+      "min-supported":    { "$value": "1280px", "$type": "dimension" }
+    },
+
+    "sidebar": {
+      "width":        { "$value": "320px", "$type": "dimension" },
+      "offset-top":   { "$value": "{space.6}", "$type": "dimension" },
+      "offset-left":  { "$value": "{space.6}", "$type": "dimension" },
+      "card-gap":     { "$value": "{space.3}", "$type": "dimension" },
+      "max-height":   { "$value": "calc(100vh - 48px)", "$type": "dimension" }
+    },
+
+    "card": {
+      "title": {
+        "padding-top":    { "$value": "{space.6}", "$type": "dimension" },
+        "padding-x":      { "$value": "{space.5}", "$type": "dimension" },
+        "padding-bottom": { "$value": "{space.5}", "$type": "dimension" },
+        "approx-height":  { "$value": "148px",      "$type": "dimension" }
+      },
+      "toggles": {
+        "padding":           { "$value": "{space.5}", "$type": "dimension" },
+        "label-margin-bottom": { "$value": "{space.3}", "$type": "dimension" },
+        "pill-gap":          { "$value": "{space.1-5}", "$type": "dimension" },
+        "footer-margin-top": { "$value": "{space.4}", "$type": "dimension" },
+        "approx-height":     { "$value": "438px", "$type": "dimension" }
+      },
+      "slider": {
+        "padding-top":    { "$value": "{space.5}", "$type": "dimension" },
+        "padding-x":      { "$value": "{space.5}", "$type": "dimension" },
+        "padding-bottom": { "$value": "{space.6}", "$type": "dimension" },
+        "track-height":   { "$value": "72px",      "$type": "dimension" },
+        "approx-height":  { "$value": "224px",     "$type": "dimension" }
+      }
+    },
+
+    "toggle-pill": {
+      "height":          { "$value": "36px", "$type": "dimension" },
+      "padding-left":    { "$value": "{space.2-5}", "$type": "dimension" },
+      "padding-right":   { "$value": "{space.3}", "$type": "dimension" },
+      "border-width":    { "$value": "1px", "$type": "dimension" },
+      "border-radius":   { "$value": "{radius.sm}", "$type": "dimension" },
+      "internal-gap":    { "$value": "{space.2-5}", "$type": "dimension" },
+      "dot-size":        { "$value": "10px", "$type": "dimension" }
+    },
+
+    "slider": {
+      "track-width":     { "$value": "280px", "$type": "dimension" },
+      "track-height":    { "$value": "72px",  "$type": "dimension" },
+      "month-labels-height": { "$value": "14px", "$type": "dimension" },
+      "thumb-width":     { "$value": "4px",  "$type": "dimension" },
+      "thumb-height":    { "$value": "56px", "$type": "dimension" },
+      "thumb-hover-scale": { "$value": 1.15, "$type": "number" }
+    },
+
+    "map-reserved": {
+      "$description": "Map area gutters that must remain clear of dot density visual focus or floating UI.",
+      "top-right":     { "$value": "{space.6}", "$type": "dimension", "$description": "Mapbox zoom/compass controls." },
+      "bottom-right":  { "$value": "80px", "$type": "dimension", "$description": "Mapbox attribution." },
+      "bottom-left":   { "$value": "{space.6}", "$type": "dimension", "$description": "No UI — visual breathing room over downtown density." }
+    }
+  },
+
+  "data": {
+    "$description": "Data-domain tokens — not visual, but encoded decisions about how data renders.",
+
+    "dot": {
+      "base-opacity":      { "$value": 0.70, "$type": "number", "$description": "Default dot opacity on map. Allows overlap to additive-blend into hotspots." },
+      "dim-opacity":       { "$value": 0.10, "$type": "number", "$description": "Toggled-off layer dot opacity. Not zero — still hints at distribution." },
+      "size-scale":        { "$value": "sqrt", "$type": "string", "$description": "Size encodes area-ish of trunk, not linear DBH. Prevents giant outliers from dominating." },
+      "size-min":          { "$value": "2px",  "$type": "dimension" },
+      "size-max":          { "$value": "18px", "$type": "dimension" },
+      "hover-stroke":      { "$value": "1.5px", "$type": "dimension" },
+      "hover-stroke-color": { "$value": "{color.ink.primary}", "$type": "color" }
+    },
+
+    "season": {
+      "$description": "Daylight curve coordinates for Toronto (43.65°N). Pre-computed at monthly intervals; consumer should interpolate spline between points.",
+      "latitude":     { "$value": 43.65, "$type": "number" },
+      "daylight-hours-by-month": {
+        "$value": [9.15, 10.30, 11.85, 13.50, 14.90, 15.55, 15.30, 14.15, 12.65, 11.10, 9.70, 8.90],
+        "$type": "array",
+        "$description": "Index 0 = January. Hours of daylight at the 15th of each month."
+      },
+      "daylight-min":  { "$value": 8.90,  "$type": "number" },
+      "daylight-max":  { "$value": 15.55, "$type": "number" }
+    },
+
+    "ripening-months": {
+      "$description": "Source data uses integer ripening month (0=Jan, 11=Dec) per tree species. Filter is inclusive range on this dimension."
+    }
+  },
+
+  "breakpoint": {
+    "$description": "Responsive cut points. Desktop is reference; mobile and tablet override layout primitives only — color, typography, motion tokens unchanged.",
+    "mobile":    { "$value": "0px",   "$type": "dimension", "$description": "Up to 767px. Bottom sheet for toggles, slider docks above." },
+    "tablet":    { "$value": "768px", "$type": "dimension", "$description": "Sidebar collapses to drawer." },
+    "desktop":   { "$value": "1024px","$type": "dimension", "$description": "Full sidebar layout." },
+    "desktop-lg":{ "$value": "1440px","$type": "dimension", "$description": "Reference design size." },
+    "desktop-xl":{ "$value": "1920px","$type": "dimension", "$description": "Optional display-xl title size." }
+  }
+}
