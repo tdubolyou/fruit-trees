@@ -8,23 +8,25 @@
 	import SkipLink from '$lib/components/SkipLink.svelte';
 	import LiveRegion from '$lib/components/LiveRegion.svelte';
 	import { page } from '$app/state';
+	import { base } from '$app/paths';
 
 	let { children }: { children: Snippet } = $props();
 
 	// The map page is full-bleed (sidebar floats over the map, per design).
-	// Other routes keep the standard header for navigation.
-	const isMap = $derived(page.url.pathname === '/');
+	// Other routes keep the standard header for navigation. Use route.id so it
+	// is independent of the deploy base path.
+	const isMap = $derived(page.route.id === '/');
 </script>
 
 <SkipLink />
 
 {#if !isMap}
 <header class="site-header">
-	<a href="/" class="site-title">Fruit Trees of Toronto</a>
+	<a href="{base}/" class="site-title">Fruit Trees of Toronto</a>
 	<nav aria-label="Main navigation">
 		<ul class="nav-list">
 			<li>
-				<a href="/" class:active={page.url.pathname === '/'}>Map</a>
+				<a href="{base}/" class:active={page.route.id === '/'}>Map</a>
 			</li>
 		</ul>
 	</nav>

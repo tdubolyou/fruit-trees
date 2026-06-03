@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	let {
 		name,
 		size = 20,
@@ -20,7 +22,7 @@
 	aria-label={label}
 	class="icon"
 >
-	<use href="/icons/{name}.svg#icon" />
+	<use href="{base}/icons/{name}.svg#icon" />
 </svg>
 
 <style>

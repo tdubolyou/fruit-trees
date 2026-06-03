@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { base } from '$app/paths';
 </script>
 
 <svelte:head>
@@ -10,7 +11,7 @@
 	<h1>{page.status}</h1>
 	<p>{page.error?.message ?? 'Something went wrong.'}</p>
 	<nav class="error-nav">
-		<a href="/">Back to map</a>
+		<a href="{base}/">Back to map</a>
 	</nav>
 </div>
 
