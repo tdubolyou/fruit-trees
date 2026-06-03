@@ -1,52 +1,59 @@
 #!/usr/bin/env bash
 #
-# Build the SvelteKit site and publish it into the FruitTrees/ folder of the
-# GitHub Pages repo, served at https://tdubolyou.github.io/FruitTrees
+# Build the SvelteKit site and publish it into the FruitTrees/ folder of your
+# local tdubolyou.github.io checkout, then commit & push.
+# Served at https://tdubolyou.github.io/FruitTrees
 #
 # Usage: npm run deploy
 #
-# Override the target with env vars if needed:
-#   PAGES_REPO   git URL of the pages repo   (default below)
-#   PAGES_BRANCH branch to push              (default: master)
-#   SUBDIR       folder inside the repo       (default: FruitTrees)
+# Override with env vars if needed:
+#   PAGES_DIR    path to the local pages repo (default: ../tdubolyou.github.io)
+#   PAGES_BRANCH branch to push               (default: master)
+#   SUBDIR       folder inside the repo        (default: FruitTrees)
 
 set -euo pipefail
-
-PAGES_REPO="${PAGES_REPO:-https://github.com/tdubolyou/tdubolyou.github.io.git}"
-PAGES_BRANCH="${PAGES_BRANCH:-master}"
-SUBDIR="${SUBDIR:-FruitTrees}"
 
 # Resolve project root (this script lives in <root>/scripts/).
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
+PAGES_DIR="${PAGES_DIR:-$ROOT/../tdubolyou.github.io}"
+PAGES_BRANCH="${PAGES_BRANCH:-master}"
+SUBDIR="${SUBDIR:-FruitTrees}"
+
+# Verify the local pages checkout exists and is the expected repo.
+if [ ! -d "$PAGES_DIR/.git" ]; then
+	echo "✗ No git repo at $PAGES_DIR — set PAGES_DIR to your tdubolyou.github.io checkout." >&2
+	exit 1
+fi
+PAGES_DIR="$(cd "$PAGES_DIR" && pwd)" # normalise to absolute path
+
 echo "▶ Building site…"
 npm run build
 
-# Sanity check: the build must contain the basemap and an entry point.
 if [ ! -f build/toronto.pmtiles ]; then
 	echo "✗ build/toronto.pmtiles missing — aborting." >&2
 	exit 1
 fi
 
-echo "▶ Cloning $PAGES_REPO ($PAGES_BRANCH)…"
-TMP="$(mktemp -d)"
-trap 'rm -rf "$TMP"' EXIT
-git clone --depth 1 --branch "$PAGES_BRANCH" "$PAGES_REPO" "$TMP"
+echo "▶ Updating local pages repo at $PAGES_DIR…"
+git -C "$PAGES_DIR" fetch origin "$PAGES_BRANCH"
+git -C "$PAGES_DIR" checkout "$PAGES_BRANCH"
+# Fast-forward only; bails if your local master has diverged so nothing is clobbered.
+git -C "$PAGES_DIR" pull --ff-only origin "$PAGES_BRANCH"
 
 echo "▶ Replacing $SUBDIR/ with fresh build…"
-rm -rf "${TMP:?}/$SUBDIR"
-mkdir -p "$TMP/$SUBDIR"
-cp -R build/. "$TMP/$SUBDIR/"
+rm -rf "${PAGES_DIR:?}/$SUBDIR"
+mkdir -p "$PAGES_DIR/$SUBDIR"
+cp -R build/. "$PAGES_DIR/$SUBDIR/"
 
-cd "$TMP"
-git add -A
-if git diff --cached --quiet; then
+git -C "$PAGES_DIR" add -A -- "$SUBDIR"
+if git -C "$PAGES_DIR" diff --cached --quiet; then
 	echo "✔ No changes to deploy."
 	exit 0
 fi
 
-git commit -q -m "Deploy FruitTrees $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-git push origin "$PAGES_BRANCH"
+git -C "$PAGES_DIR" commit -q -m "Deploy FruitTrees $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+git -C "$PAGES_DIR" push origin "$PAGES_BRANCH"
 
 echo "✔ Deployed to https://tdubolyou.github.io/$SUBDIR/"
