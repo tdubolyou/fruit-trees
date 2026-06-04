@@ -17,13 +17,17 @@
 	}
 
 	function handleMonthChange(month: number | null) {
-		filterState.selectedMonth = month;
+		if (month === null) {
+			filterState.clearMonth();
+		} else {
+			filterState.selectMonth(month);
+		}
 		announceFilterChange();
 	}
 
 	function handleClearMonth() {
-		filterState.selectedMonth = null;
-		announce('Ripening month filter cleared.');
+		filterState.clearMonth();
+		announce('Ripening month filter cleared. All species shown.');
 	}
 
 	function announceFilterChange() {
@@ -42,6 +46,35 @@
 		filterState.enableAllCategories();
 		announce('All species shown.');
 	}
+
+	// Scroll affordance: a soft fade + chevron at the bottom that fades out
+	// over the last stretch of scroll.
+	let scroller: HTMLDivElement | undefined = $state();
+	let fadeOpacity = $state(0);
+	// Visible content width of the scroller (excludes any scrollbar) so the
+	// fade matches the cards, not the surrounding container.
+	let cardsWidth = $state(0);
+
+	function updateScroll(el: HTMLElement) {
+		const remaining = el.scrollHeight - el.scrollTop - el.clientHeight;
+		fadeOpacity = Math.max(0, Math.min(1, remaining / 40));
+		cardsWidth = el.clientWidth;
+	}
+
+	$effect(() => {
+		open; // re-run when the panel opens
+		const el = scroller;
+		if (!el) return;
+		const update = () => updateScroll(el);
+		update();
+		const ro = new ResizeObserver(update);
+		ro.observe(el);
+		window.addEventListener('resize', update);
+		return () => {
+			ro.disconnect();
+			window.removeEventListener('resize', update);
+		};
+	});
 </script>
 
 <aside class="sidebar" class:collapsed={!open} aria-label="Filters and navigation">
@@ -71,20 +104,27 @@
 	</button>
 
 	{#if open}
-		<div class="cards">
+		<div class="cards-wrap">
+		<div class="cards" bind:this={scroller} onscroll={(e) => updateScroll(e.currentTarget)}>
 			<!-- Card 1: Title -->
 			<section class="card title-card">
 				<h1 class="title">The Fruit Trees<br />of Toronto</h1>
-				<p class="byline">By: Tom Weatherburn</p>
+				<p class="byline">By: <a href="https://tomweatherburn.com" target="_blank">Tom Weatherburn</a></p>
 				<p class="blurb">
-					Explore thousands of fruit and nut trees growing on public land across Toronto. Filter by
-					species and ripening season to find what's near you.
+					Thousands of fruit and nut trees grow on Toronto's public land. Filter by species and
+					ripening season.
 				</p>
 			</section>
 
 			<!-- Card 2: Species filter -->
 			<section class="card" aria-labelledby="species-heading">
-				<h2 id="species-heading" class="card-heading">Filter by Species</h2>
+				<div class="card-header">
+					<h2 id="species-heading" class="card-heading">Filter by Species</h2>
+					<div class="btn-row">
+						<button class="clear-btn" onclick={handleAllOff}>All Off</button>
+						<button class="clear-btn" onclick={handleAllOn}>All On</button>
+					</div>
+				</div>
 				<div class="categories">
 					{#each CATEGORIES as category (category.id)}
 						<CategoryPill
@@ -93,10 +133,6 @@
 							ontoggle={() => handleToggle(category.id)}
 						/>
 					{/each}
-				</div>
-				<div class="btn-row">
-					<button class="clear-btn" onclick={handleAllOff}>All Off</button>
-					<button class="clear-btn" onclick={handleAllOn}>All On</button>
 				</div>
 			</section>
 
@@ -109,8 +145,26 @@
 
 			<!-- Footer -->
 			<footer class="footer">
-				<span>© mapTO, 2026 · Data: City of Toronto</span>
+				<span><a href="https://mapto.ca" target="_blank">© mapTO, 2026</a> · Data: City of Toronto</span>
 			</footer>
+		</div>
+
+		<div
+			class="scroll-fade"
+			style:opacity={fadeOpacity}
+			style:width="{cardsWidth}px"
+			aria-hidden="true"
+		>
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="chevron">
+				<path
+					d="M4 6l4 4 4-4"
+					stroke="currentColor"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</div>
 		</div>
 	{/if}
 </aside>
@@ -128,15 +182,69 @@
 		pointer-events: none;
 	}
 
-	.cards {
+	.cards-wrap {
+		position: relative;
 		width: 340px;
 		max-height: calc(100vh - 48px);
 		margin: var(--space-6);
+		display: flex;
+		pointer-events: auto;
+	}
+
+	.cards {
+		width: 100%;
+		max-height: 100%;
 		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-3);
-		pointer-events: auto;
+		scrollbar-width: none;
+	}
+
+	.cards::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Soft fade + chevron at the bottom; fades out as the panel reaches the end */
+	.scroll-fade {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 0;
+		height: 56px;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		padding-bottom: 4px;
+		pointer-events: none;
+		border-radius: 0 0 var(--radius-md) var(--radius-md);
+		background: linear-gradient(
+			to top,
+			color-mix(in srgb, var(--color-panel) 60%, transparent),
+			transparent
+		);
+		transition: opacity var(--duration-fast) var(--ease-out);
+	}
+
+	.chevron {
+		color: var(--color-text-secondary);
+		animation: chevron-bob 1.6s var(--ease-out) infinite;
+	}
+
+	@keyframes chevron-bob {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(3px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.chevron {
+			animation: none;
+		}
 	}
 
 	.card {
@@ -196,6 +304,13 @@
 		margin: 0;
 	}
 
+	.card-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2);
+	}
+
 	.categories {
 		display: flex;
 		flex-direction: column;
@@ -204,20 +319,21 @@
 
 	.btn-row {
 		display: flex;
-		gap: var(--space-2);
-		margin-top: var(--space-1);
+		gap: var(--space-1);
+		flex-shrink: 0;
 	}
 
 	.clear-btn {
 		align-self: flex-start;
-		padding: var(--space-1) var(--space-3);
-		font-size: var(--text-sm);
+		padding: 3px var(--space-2);
+		font-size: var(--text-xs);
 		font-weight: var(--font-medium);
 		color: var(--color-text-primary);
 		background: transparent;
 		border: 1px solid var(--color-border-default);
 		border-radius: var(--radius-sm);
 		cursor: pointer;
+		white-space: nowrap;
 		transition: border-color var(--duration-fast) var(--ease-out);
 	}
 

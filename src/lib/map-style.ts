@@ -139,8 +139,10 @@ export const TREE_CIRCLE_PAINT_HOVER = {
 	'circle-stroke-color': '#f5f4f1'
 };
 
-export const TORONTO_CENTER: [number, number] = [-79.39, 43.69];
+// Axis-aligned extent of the supplied bounding polygon (a rotated rectangle
+// around the tree-data area), as [[west, south], [east, north]].
+export const TORONTO_CENTER: [number, number] = [-79.387, 43.738];
 export const TORONTO_BOUNDS: [[number, number], [number, number]] = [
-	[-79.74, 43.42],
-	[-79.02, 44.02]
+	[-80.18704, 43.30241],
+	[-78.5863, 44.17452]
 ];

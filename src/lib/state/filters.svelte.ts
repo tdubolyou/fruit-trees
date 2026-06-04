@@ -29,42 +29,24 @@ class FilterState {
 		return this.selectedMonth ? MONTH_NAMES[this.selectedMonth - 1] : 'All year';
 	}
 
-	/** Category ids that ripen in the selected month. */
-	private categoriesInMonth(): string[] {
-		return CATEGORIES.filter((c) => c.ripeningMonths.includes(this.selectedMonth!)).map(
-			(c) => c.id
-		);
+	/** Category ids that ripen in the given month. */
+	private categoriesInMonth(month: number): string[] {
+		return CATEGORIES.filter((c) => c.ripeningMonths.includes(month)).map((c) => c.id);
 	}
 
 	/**
 	 * Returns a MapLibre filter expression for the tree layer.
-	 * Applied directly on the GPU — no JS-level filtering.
+	 * Visibility is driven entirely by `activeCategories` (the month slider and
+	 * the All On/Off buttons all resolve to a set of active categories), so the
+	 * filter is a single category membership test.
 	 */
 	get mapFilter(): ExpressionSpecification | undefined {
-		const allActive = this.activeCategories.size === CATEGORIES.length;
-		const noMonth = this.selectedMonth === null;
-
-		if (allActive && noMonth) return undefined;
-
-		const parts: ExpressionSpecification[] = [];
-
-		if (!allActive) {
-			parts.push([
-				'in',
-				['get', 'category'],
-				['literal', [...this.activeCategories]]
-			] as ExpressionSpecification);
-		}
-
-		if (!noMonth) {
-			parts.push([
-				'in',
-				['get', 'category'],
-				['literal', this.categoriesInMonth()]
-			] as ExpressionSpecification);
-		}
-
-		return parts.length === 1 ? parts[0] : (['all', ...parts] as ExpressionSpecification);
+		if (this.activeCategories.size === CATEGORIES.length) return undefined;
+		return [
+			'in',
+			['get', 'category'],
+			['literal', [...this.activeCategories]]
+		] as ExpressionSpecification;
 	}
 
 	toggleCategory(id: string) {
@@ -77,12 +59,28 @@ class FilterState {
 		this.activeCategories = next;
 	}
 
-	disableAllCategories() {
-		this.activeCategories = new Set();
+	/** Pick a ripening month: shows the species ripening then, overriding any
+	 *  current selection (including "all off"). */
+	selectMonth(month: number) {
+		this.selectedMonth = month;
+		this.activeCategories = new Set(this.categoriesInMonth(month));
 	}
 
+	/** Clear the month filter and show all species again. */
+	clearMonth() {
+		this.selectedMonth = null;
+		this.activeCategories = new Set(CATEGORIES.map((c) => c.id));
+	}
+
+	disableAllCategories() {
+		this.activeCategories = new Set();
+		this.selectedMonth = null;
+	}
+
+	/** All On also clears the ripening-month filter. */
 	enableAllCategories() {
 		this.activeCategories = new Set(CATEGORIES.map((c) => c.id));
+		this.selectedMonth = null;
 	}
 
 	resetAll() {

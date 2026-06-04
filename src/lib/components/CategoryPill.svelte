@@ -50,7 +50,7 @@
 	.switch {
 		position: relative;
 		flex-shrink: 0;
-		width: 30px;
+		width: 26px;
 		height: 14px;
 		margin-top: 3px;
 	}
@@ -84,7 +84,7 @@
 
 	/* On: colored knob sits left (per PDF). Off: knob slides right and dims. */
 	.row:not(.active) .knob {
-		transform: translate(17px, -50%);
+		transform: translate(13px, -50%);
 		background: var(--color-text-tertiary);
 		opacity: 0.6;
 	}

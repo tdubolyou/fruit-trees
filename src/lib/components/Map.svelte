@@ -41,7 +41,7 @@
 				center: TORONTO_CENTER,
 				zoom: 11,
 				bearing: -17, // Rotate map so top border of Toronto is flat
-				minZoom: 10,
+				minZoom: 9,
 				maxZoom: 18,
 				maxBounds: TORONTO_BOUNDS,
 				attributionControl: false
