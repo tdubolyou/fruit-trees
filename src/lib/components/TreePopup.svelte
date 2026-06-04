@@ -56,6 +56,9 @@
 
 	<h2 class="category" style:color={category?.color}>{category?.label ?? tree.category}</h2>
 	<p class="species">{tree.species}</p>
+	{#if tree.botanical}
+		<p class="botanical">{tree.botanical}</p>
+	{/if}
 
 	{#if ripeningText}
 		<p class="description">Typically ripens in {ripeningText}.</p>
@@ -128,7 +131,14 @@
 		font-style: italic;
 		font-size: var(--text-lg);
 		color: var(--color-text-secondary);
-		margin: 0 0 var(--space-3);
+		margin: 0;
+	}
+
+	.botanical {
+		font-style: italic;
+		font-size: var(--text-sm);
+		color: var(--color-text-tertiary);
+		margin: var(--space-1) 0 var(--space-3);
 	}
 
 	.description {
