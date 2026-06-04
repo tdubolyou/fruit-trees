@@ -54,23 +54,25 @@
 >
 	<button class="close-btn" onclick={onclose} aria-label="Close tree details">&times;</button>
 
-	<h2 class="category" style:color={category?.color}>{category?.label ?? tree.category}</h2>
-	<p class="species">{tree.species}</p>
-	{#if tree.botanical}
-		<p class="botanical">{tree.botanical}</p>
-	{/if}
+	<div class="identity">
+		<h2 class="category" style:color={category?.color}>{category?.label ?? tree.category}</h2>
+		<p class="species">{tree.species}</p>
+		{#if tree.botanical}
+			<p class="botanical">{tree.botanical}</p>
+		{/if}
+	</div>
 
 	{#if ripeningText}
 		<p class="description">Typically ripens in {ripeningText}.</p>
 	{/if}
 
-	<dl class="details">
-		<div class="detail-row">
+	<dl class="facts">
+		<div class="fact">
 			<dt>Diameter</dt>
 			<dd>{tree.dbh} cm</dd>
 		</div>
 		{#if tree.address}
-			<div class="detail-row">
+			<div class="fact">
 				<dt>Location</dt>
 				<dd>
 					{#if mapsUrl}
@@ -87,6 +89,9 @@
 <style>
 	.popup {
 		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
 		background: color-mix(in srgb, var(--color-panel) 95%, transparent);
 		backdrop-filter: blur(var(--blur-panel));
 		-webkit-backdrop-filter: blur(var(--blur-panel));
@@ -116,12 +121,20 @@
 		color: var(--color-text-primary);
 	}
 
+	/* Identity block: category → common name → botanical */
+	.identity {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding-right: var(--space-5);
+	}
+
 	.category {
 		font-family: var(--font-display);
 		font-variation-settings: 'opsz' 96;
 		font-size: var(--text-2xl);
 		font-weight: var(--font-semibold);
-		line-height: 1.1;
+		line-height: 1.05;
 		letter-spacing: -0.02em;
 		margin: 0;
 	}
@@ -130,46 +143,63 @@
 		font-family: var(--font-display);
 		font-style: italic;
 		font-size: var(--text-lg);
-		color: var(--color-text-secondary);
+		color: var(--color-text-primary);
+		line-height: 1.2;
 		margin: 0;
 	}
 
 	.botanical {
 		font-style: italic;
-		font-size: var(--text-sm);
+		font-size: var(--text-xs);
+		letter-spacing: 0.02em;
 		color: var(--color-text-tertiary);
-		margin: var(--space-1) 0 var(--space-3);
+		margin: 0;
 	}
 
 	.description {
+		font-family: var(--font-display);
+		font-style: italic;
 		font-size: var(--text-sm);
 		line-height: var(--leading-normal);
 		color: var(--color-text-secondary);
-		margin: 0 0 var(--space-3);
+		margin: 0;
 	}
 
-	.details {
+	.facts {
 		margin: 0;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-1);
 	}
 
-	.detail-row {
+	.fact {
 		display: flex;
-		justify-content: space-between;
-		gap: var(--space-3);
+		gap: 0.4em;
 		font-size: var(--text-sm);
 	}
 
-	dt {
+	.fact dt {
 		color: var(--color-text-tertiary);
 	}
 
-	dd {
+	.fact dt::after {
+		content: ':';
+	}
+
+	.fact dd {
 		margin: 0;
-		text-align: right;
 		color: var(--color-text-secondary);
+	}
+
+	.fact a {
+		color: var(--color-text-primary);
+		text-decoration: underline;
+		text-decoration-color: var(--color-text-tertiary);
+		text-underline-offset: 2px;
+	}
+
+	.fact a:hover {
+		text-decoration-color: var(--color-text-primary);
 	}
 
 </style>
