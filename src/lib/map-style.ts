@@ -33,7 +33,7 @@ const DARK_FLAVOR = {
 	aerodrome: '#101216',
 	pedestrian: '#101216',
 	water: '#14202e',
-	buildings: '#15181e',
+	buildings: '#21242a',
 	// road casings blend into the earth so roads read as thin strokes
 	minor_service_casing: '#0e1013',
 	minor_casing: '#0e1013',
