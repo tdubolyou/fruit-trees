@@ -140,6 +140,12 @@
 			}
 		});
 
+		// Dismiss the popup when the map pans or zooms — its position is pinned
+		// to the original click point and would otherwise drift off the tree.
+		m.on('movestart', () => {
+			selectedTree = null;
+		});
+
 		// Hover state styling
 		m.setPaintProperty('trees', 'circle-opacity', [
 			'case',
