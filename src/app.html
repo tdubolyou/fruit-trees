@@ -4,6 +4,59 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="canonical" href="https://tdubolyou.github.io/FruitTrees/" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="The Fruit Trees of Toronto" />
+		<meta property="og:title" content="The Fruit Trees of Toronto" />
+		<meta
+			property="og:description"
+			content="Explore tens of thousands of fruit and nut trees on Toronto's public land. An interactive map you can filter by species, trunk size, and ripening month."
+		/>
+		<meta property="og:url" content="https://tdubolyou.github.io/FruitTrees/" />
+		<meta property="og:image" content="https://tdubolyou.github.io/FruitTrees/og-image.png" />
+		<meta property="og:image:width" content="2400" />
+		<meta property="og:image:height" content="1260" />
+		<meta property="og:image:alt" content="The Fruit Trees of Toronto — interactive map" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="The Fruit Trees of Toronto" />
+		<meta
+			name="twitter:description"
+			content="Explore tens of thousands of fruit and nut trees on Toronto's public land. Filter by species, size, and ripening month."
+		/>
+		<meta name="twitter:image" content="https://tdubolyou.github.io/FruitTrees/og-image.png" />
+
+		<!-- Structured data for search engines & AI crawlers -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebApplication",
+				"name": "The Fruit Trees of Toronto",
+				"url": "https://tdubolyou.github.io/FruitTrees/",
+				"applicationCategory": "Map",
+				"operatingSystem": "Web",
+				"browserRequirements": "Requires a WebGL-capable browser",
+				"inLanguage": "en",
+				"description": "An interactive map of the fruit- and nut-bearing trees on Toronto's public land, filterable by species, trunk size, and ripening month.",
+				"image": "https://tdubolyou.github.io/FruitTrees/og-image.png",
+				"creator": {
+					"@type": "Person",
+					"name": "Tom Weatherburn",
+					"url": "http://tomweatherburn.com"
+				},
+				"isBasedOn": {
+					"@type": "Dataset",
+					"name": "Street Tree Data",
+					"url": "https://open.toronto.ca/dataset/street-tree-data/",
+					"creator": { "@type": "GovernmentOrganization", "name": "City of Toronto" }
+				}
+			}
+		</script>
+
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
