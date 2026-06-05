@@ -109,7 +109,7 @@
 			<!-- Card 1: Title -->
 			<section class="card title-card">
 				<h1 class="title">The Fruit Trees<br />of Toronto</h1>
-				<p class="byline">By: <a href="https://tomweatherburn.com" target="_blank">Tom Weatherburn</a></p>
+				<p class="byline">By: <a href="http://tomweatherburn.com" target="_blank">Tom Weatherburn</a></p>
 				<p class="blurb">
 					Thousands of fruit and nut trees grow on Toronto's public land. Filter by species and
 					ripening season.
