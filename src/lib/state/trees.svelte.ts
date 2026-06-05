@@ -3,7 +3,9 @@ import type { FruitTreeFeatureCollection, TreeMeta } from '$lib/types';
 class TreeState {
 	data = $state.raw<FruitTreeFeatureCollection | null>(null);
 	meta = $state.raw<TreeMeta | null>(null);
-	loading = $state(false);
+	// Starts true: we always load on mount, so the map shouldn't flash-mount
+	// before data is ready (which would unmount it mid-init).
+	loading = $state(true);
 	error = $state<string | null>(null);
 
 	get count(): number {

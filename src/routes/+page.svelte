@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import { treeState } from '$lib/state/trees.svelte';
 	import Map from '$lib/components/Map.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 
 	onMount(() => {
-		treeState.load('');
+		treeState.load(base);
 	});
 </script>
 

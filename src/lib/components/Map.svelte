@@ -23,11 +23,16 @@
 	onMount(() => {
 		let mapInstance: maplibregl.Map | undefined;
 		let cleanupProtocol: (() => void) | undefined;
+		let cancelled = false;
 
 		(async () => {
 			const ml = await import('maplibre-gl');
 			await import('maplibre-gl/dist/maplibre-gl.css');
 			const { Protocol } = await import('pmtiles');
+
+			// Bail if the component unmounted (or the container went away) while the
+			// async imports were in flight — otherwise `new Map` throws on a null container.
+			if (cancelled || !container) return;
 
 			// Register the pmtiles protocol so MapLibre can read the local archive.
 			const protocol = new Protocol();
@@ -70,6 +75,7 @@
 		})();
 
 		return () => {
+			cancelled = true;
 			mapInstance?.remove();
 			cleanupProtocol?.();
 		};
