@@ -252,4 +252,22 @@
 		font-size: 10px;
 		color: var(--color-text-tertiary);
 	}
+
+	/* Bigger knob + hit area on touch layouts. */
+	@media (max-width: 1023px) {
+		.thumb-strip {
+			height: 40px;
+		}
+		.thumb::-webkit-slider-thumb {
+			width: 24px;
+			height: 24px;
+		}
+		.thumb::-moz-range-thumb {
+			width: 24px;
+			height: 24px;
+		}
+		.months {
+			font-size: 12px;
+		}
+	}
 </style>

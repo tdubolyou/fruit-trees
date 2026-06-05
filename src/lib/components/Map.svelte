@@ -20,6 +20,28 @@
 	let selectedTree: FruitTreeProperties | null = $state(null);
 	let popupPosition = $state({ x: 0, y: 0 });
 
+	let isMobile = $state(
+		typeof window !== 'undefined' ? window.matchMedia('(max-width: 1023px)').matches : false
+	);
+	$effect(() => {
+		const mq = window.matchMedia('(max-width: 1023px)');
+		const sync = () => (isMobile = mq.matches);
+		sync();
+		mq.addEventListener('change', sync);
+		return () => mq.removeEventListener('change', sync);
+	});
+
+	// Choose a load zoom that fits the data to the viewport. The data footprint
+	// is ~1750x1460 CSS px at zoom 11; below 1024px we scale down to fit so the
+	// whole city is visible (a fixed zoom over-zooms phones).
+	function initialZoom(): number {
+		const w = window.innerWidth;
+		const h = window.innerHeight;
+		if (w >= 1024) return 11;
+		const fit = Math.min((w * 0.94) / 1750, (h * 0.72) / 1460);
+		return 11 + Math.log2(fit);
+	}
+
 	onMount(() => {
 		let mapInstance: maplibregl.Map | undefined;
 		let cleanupProtocol: (() => void) | undefined;
@@ -40,13 +62,14 @@
 			cleanupProtocol = () => ml.removeProtocol('pmtiles');
 			const tilesUrl = `${window.location.origin}${base}/${PMTILES_FILE}`;
 
+			const z0 = initialZoom();
 			mapInstance = new ml.Map({
 				container,
 				style: buildBasemapStyle(tilesUrl),
 				center: TORONTO_CENTER,
-				zoom: 11,
+				zoom: z0,
 				bearing: -17, // Rotate map so top border of Toronto is flat
-				minZoom: 9,
+				minZoom: Math.min(9, z0),
 				maxZoom: 18,
 				maxBounds: TORONTO_BOUNDS,
 				attributionControl: false
@@ -200,8 +223,9 @@
 	{#if selectedTree}
 		<div
 			class="popup-overlay"
-			style:left="{Math.min(popupPosition.x, (typeof window !== 'undefined' ? window.innerWidth : 800) - 300)}px"
-			style:top="{popupPosition.y + 10}px"
+			class:docked={isMobile}
+			style:left={isMobile ? null : `${Math.min(popupPosition.x, window.innerWidth - 300)}px`}
+			style:top={isMobile ? null : `${popupPosition.y + 10}px`}
 		>
 			<TreePopup tree={selectedTree} onclose={closePopup} />
 		</div>
@@ -235,7 +259,32 @@
 		pointer-events: auto;
 	}
 
+	/* On touch layouts the popup docks to the bottom as a full-width card. */
+	.popup-overlay.docked {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: auto;
+		z-index: 30;
+		padding: var(--space-3);
+		padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+	}
+	.popup-overlay.docked :global(.popup) {
+		max-width: none;
+		width: 100%;
+	}
+
 	:global(.maplibregl-ctrl-bottom-left) {
 		opacity: 0.6;
+	}
+
+	/* On mobile the bottom sheet owns the bottom of the screen, so move the
+	   map controls to the top-right, clear of it and the notch. */
+	@media (max-width: 1023px) {
+		:global(.maplibregl-ctrl-bottom-right) {
+			top: calc(8px + env(safe-area-inset-top, 0px));
+			bottom: auto;
+		}
 	}
 </style>
